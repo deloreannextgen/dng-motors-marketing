@@ -17,18 +17,20 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
+      <main>
         {/* hero */}
-        {/* <div style={{ width: "100%", height: "100%", position: "relative" }}> */}
-        <div>
-          <Image
+        <div
+          style={{
+            width: "100%",
+          }}
+        >
+          {/* make image component */}
+          {/* review https://nextjs.org/docs/messages/no-img-element */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
             src="/jzd-the-dream-never-died.png"
-            alt="Model JZD with the quote 'the dream never died'"
-            // className={styles.vercelLogo}
-            fill={true}
-            // width={100}
-            // height={24}
-            priority
+            width="100%"
+            alt="picture of jzd"
           />
         </div>
       </main>
