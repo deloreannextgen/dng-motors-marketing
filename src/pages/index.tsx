@@ -1,13 +1,10 @@
+import BasePage from "@layouts/base-page";
+import MailingList from "@modules/forms/MailingList";
 import Head from "next/head";
-import Image from "next/image";
-import { Inter } from "next/font/google";
-import styles from "@/components/styles/Home.module.css";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   return (
-    <>
+    <BasePage>
       <Head>
         <title>DeLorean Next Generation Motors</title>
         <meta
@@ -19,21 +16,21 @@ export default function Home() {
       </Head>
       <main>
         {/* hero */}
-        <div
+        {/* <div
           style={{
             width: "100%",
           }}
-        >
-          {/* make image component */}
-          {/* review https://nextjs.org/docs/messages/no-img-element */}
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/jzd-the-dream-never-died.png"
-            width="100%"
-            alt="picture of jzd"
-          />
-        </div>
+        > */}
+        {/* make image component */}
+        {/* review https://nextjs.org/docs/messages/no-img-element */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        {/* <img
+          src="/assets/images/jzd-the-dream-never-died.png"
+          width="100%"
+          alt="picture of jzd"
+        /> */}
+        <MailingList />
       </main>
-    </>
+    </BasePage>
   );
 }
