@@ -1,7 +1,9 @@
 import Box from "@elements/layout/Box";
-import { Paper, TextField } from "@mui/material";
+import { Paper, TextField as MUITextField } from "@mui/material";
 import React, { useEffect } from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
+
+import TextField from "@elements/inputs/TextField";
 
 import SocialLinks from "@modules/SocialLinks";
 import Button from "@elements/inputs/Button";
@@ -33,12 +35,12 @@ type Inputs = {
   firstname: string;
 };
 const MailingListForm = () => {
+  const methods = useForm<Inputs>();
   const {
-    register,
-    handleSubmit,
-    watch,
     formState: { errors },
-  } = useForm<Inputs>();
+    register,
+  } = methods;
+
   const onSubmit: SubmitHandler<Inputs> = async data => {
     const createContactRoute = "/api/hello";
 
@@ -59,9 +61,10 @@ const MailingListForm = () => {
     console.log("@@response.json()", responseToJson);
     return responseToJson; // parses JSON response into native JavaScript objects
   };
-
+  console.log("@@formState errors", errors);
   // console.log("@@email", watch("email")); // watch input value by passing the name of it
   // console.log("@@firstname", watch("firstname")); // watch input value by passing the name of it
+
   return (
     <Paper>
       <header> DeLorean Next Generation</header>
@@ -79,19 +82,33 @@ const MailingListForm = () => {
               "& > :not(style)": { m: 1, width: "25ch" },
             }}
           >
-            <form onSubmit={handleSubmit(onSubmit)}>
-              {/* register your input into the hook by invoking the "register" function */}
-              <TextField
-                defaultValue="jzd@dng.com"
-                {...register("email", { required: true })}
-              />
-              {errors.email && <span>This field is required</span>}
-              {/* include validation with required or other standard HTML validation rules */}
-              <TextField {...register("firstname", { required: true })} />
-              {/* errors will return when field validation fails  */}
-              {errors.firstname && <span>This field is required</span>}
-              <Button type="submit">Submit</Button>
-            </form>
+            <FormProvider {...methods}>
+              <form onSubmit={methods.handleSubmit(onSubmit)}>
+                {/* Form header */}
+                <header>
+                  <span>Form Title</span>
+                </header>
+                <main>
+                  <TextField
+                    label="Email"
+                    options={{ required: true }}
+                    fieldName="email"
+                    errorMsg={errors.email && "This field is required"}
+                  />
+
+                  <TextField
+                    label="First Name"
+                    options={{ required: true }}
+                    fieldName="firstname"
+                    errorMsg={errors.firstname && "This field is required"}
+                  />
+                </main>
+                <footer>
+                  {/* Form footer */}
+                  <Button type="submit">Submit</Button>
+                </footer>
+              </form>
+            </FormProvider>
           </Box>
         </div>
       </main>

@@ -1,5 +1,7 @@
-import BasePage from "@layouts/base-page";
-import MailingList from "@modules/forms/MailingList";
+import BasePage from "@layouts/page-layouts/base-page";
+import MailingListSignUpForm from "@modules/forms/mailing-list/sign-up";
+import { Paper } from "@mui/material";
+
 import Head from "next/head";
 
 export default function Home() {
@@ -15,21 +17,9 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        {/* hero */}
-        {/* <div
-          style={{
-            width: "100%",
-          }}
-        > */}
-        {/* make image component */}
-        {/* review https://nextjs.org/docs/messages/no-img-element */}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        {/* <img
-          src="/assets/images/jzd-the-dream-never-died.png"
-          width="100%"
-          alt="picture of jzd"
-        /> */}
-        <MailingList />
+        <Paper>
+          <MailingListSignUpForm />
+        </Paper>
       </main>
     </BasePage>
   );

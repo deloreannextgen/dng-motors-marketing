@@ -1,13 +1,7 @@
 import * as React from "react";
-import { default as MUIButton } from "@mui/material/Button";
+import { default as MUIButton, ButtonProps } from "@mui/material/Button";
 
-type MUIButtonType = typeof MUIButton;
-
-interface IButton extends MUIButtonType {
-  children: React.ReactNode;
-}
-
-export default function Button(props: IButton) {
+export default function Button(props: ButtonProps) {
   const { children, ...rest } = props;
   return <MUIButton {...rest}>{children}</MUIButton>;
 }
